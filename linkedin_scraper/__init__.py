@@ -3,7 +3,10 @@ from .person import Person
 from .objects import Institution, Experience, Education, Contact
 from .company import Company
 from .jobs import Job
+from .jobs_extended import JobExtended
 from .job_search import JobSearch
+from .search_scraper import JobScraperRobust  # Keep old version for compatibility
+from .search_scraper_v2 import JobScraperV2, SearchResultsScraper  # V2 has pagination!
 
 __version__ = "2.11.5"
 
