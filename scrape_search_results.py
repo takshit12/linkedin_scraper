@@ -21,6 +21,11 @@ import json
 import csv
 from datetime import datetime
 import time
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 def scrape_all_jobs_from_search():
@@ -88,9 +93,20 @@ def scrape_all_jobs_from_search():
         MAX_PAGES = None
         print(f"✓ Using default: ALL pages (until Next button disabled)")
 
-    # Configuration
-    EMAIL = "takshitmathur786@gmail.com"
-    PASSWORD = "Invincible7@1201"
+    # Configuration - Load from environment variables
+    EMAIL = os.getenv("LINKEDIN_EMAIL")
+    PASSWORD = os.getenv("LINKEDIN_PASSWORD")
+
+    if not EMAIL or not PASSWORD:
+        print("\n❌ Error: LinkedIn credentials not found!")
+        print("Please create a .env file with your credentials:")
+        print("  1. Copy .env.example to .env")
+        print("  2. Fill in your LINKEDIN_EMAIL and LINKEDIN_PASSWORD")
+        print("\nExample:")
+        print("  cp .env.example .env")
+        print("  nano .env  # or use any text editor")
+        return
+
     SCROLL_PAUSE = 2  # Seconds to wait between scrolls
 
     print(f"\n📋 Configuration:")

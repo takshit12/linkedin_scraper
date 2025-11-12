@@ -53,11 +53,38 @@ pip3 install --user linkedin_scraper
 Version **2.0.0** and before is called `linkedin_user_scraper` and can be installed via `pip3 install --user linkedin_user_scraper`
 
 ## Setup
-First, you must set your chromedriver location by
+
+### 1. Install Dependencies
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+```
+
+### 2. Configure Credentials
+Create a `.env` file with your LinkedIn credentials:
+
+```bash
+cp .env.example .env
+# Edit .env with your LinkedIn email and password
+```
+
+Your `.env` file should contain:
+```
+LINKEDIN_EMAIL=your-email@example.com
+LINKEDIN_PASSWORD=your-password-here
+```
+
+**Important:** The `.env` file is gitignored and will not be committed. Keep your credentials secure.
+
+### 3. ChromeDriver (Optional)
+If needed, set your chromedriver location:
 
 ```bash
 export CHROMEDRIVER=~/chromedriver
 ```
+
+For detailed setup instructions, see [SETUP.md](SETUP.md)
 
 ## Sponsor
 Message me if you'd like to sponsor me

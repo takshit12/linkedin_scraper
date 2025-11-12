@@ -16,6 +16,10 @@ Usage:
 """
 import sys
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -108,8 +112,16 @@ def main():
     print("=" * 80)
     print()
 
-    EMAIL = "takshitmathur786@gmail.com"
-    PASSWORD = "Invincible7@1201"
+    # Load credentials from environment variables
+    EMAIL = os.getenv("LINKEDIN_EMAIL")
+    PASSWORD = os.getenv("LINKEDIN_PASSWORD")
+
+    if not EMAIL or not PASSWORD:
+        print("\n❌ Error: LinkedIn credentials not found!")
+        print("Please create a .env file with your credentials:")
+        print("  1. Copy .env.example to .env")
+        print("  2. Fill in your LINKEDIN_EMAIL and LINKEDIN_PASSWORD")
+        return
 
     print("🌐 Starting Chrome browser...")
     driver = webdriver.Chrome()

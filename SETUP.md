@@ -67,10 +67,33 @@ pip3 install -r requirements.txt
 
 **Expected output:**
 ```
-Successfully installed selenium-4.18.1 requests-2.32.5 lxml-5.3.0
+Successfully installed selenium-4.18.1 requests-2.32.5 lxml-5.3.0 python-dotenv-1.0.0
 ```
 
-### Step 4: Verify Installation
+### Step 4: Configure LinkedIn Credentials
+
+**Create .env file with your credentials:**
+
+```bash
+# Copy the example file
+cp .env.example .env
+
+# Edit with your credentials
+nano .env  # or use any text editor
+```
+
+**Your .env file should contain:**
+```
+LINKEDIN_EMAIL=your-email@example.com
+LINKEDIN_PASSWORD=your-password-here
+```
+
+**Important:**
+- The .env file is already in .gitignore and will NOT be committed
+- Never share your .env file or commit it to version control
+- Keep your LinkedIn password secure
+
+### Step 5: Verify Installation
 
 ```bash
 python3 -c "import selenium; import requests; import lxml; print('✓ All packages installed')"
@@ -258,9 +281,9 @@ chmod +x scripts/*.py
 - [ ] Chrome browser installed
 - [ ] Virtual environment created
 - [ ] Dependencies installed (`pip3 install -r requirements.txt`)
+- [ ] .env file created with LinkedIn credentials
 - [ ] Test import successful
 - [ ] Chrome driver working
-- [ ] LinkedIn credentials ready
 - [ ] Read warnings about TOS violations
 
 ---
@@ -279,9 +302,9 @@ export CHROMEDRIVER=/path/to/chromedriver
 set CHROMEDRIVER=C:\path\to\chromedriver.exe
 ```
 
-### Set LinkedIn Credentials (Optional)
+### LinkedIn Credentials
 
-**Not recommended** - credentials are hardcoded in scripts for convenience.
+Credentials are loaded from the .env file for security. See Step 4 above for setup instructions.
 
 ---
 
@@ -371,6 +394,8 @@ cd ~/Desktop/Projects/linkedin_scraper
 python3 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
+cp .env.example .env
+# Edit .env with your LinkedIn credentials
 python3 scrape_search_results.py
 ```
 
